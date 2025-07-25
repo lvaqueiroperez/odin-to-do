@@ -71,7 +71,19 @@ const homePageModule = (function () {
 
     }
 
-    return { searchProject };
+    const createProject = () => {
+
+        const projectName = prompt("Please, enter the new project's name");
+        const projectDescription = prompt("Please, enter the new project's description");
+
+        projectsArray.push(new Project(projectName, projectDescription));
+
+        console.log("NEW PROJECT ADDED");
+        console.table(projectsArray);
+
+    }
+
+    return { searchProject, createProject };
 
 })();
 
