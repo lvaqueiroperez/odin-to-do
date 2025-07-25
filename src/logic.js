@@ -54,10 +54,25 @@ const homePageModule = (function () {
 
     console.table(projectsArray);
 
-    const searchProject = (string) => {
-        return projectsArray.find((project) =>
-            project.name.toLowerCase() === string.toLowerCase()
+    const searchProject = () => {
+
+        let projectName = prompt("Write the name of the project", "");
+
+        let project = projectsArray.find((project) =>
+            project.name.toLowerCase() === projectName.toLowerCase()
         );
+
+        if (project) {
+            return project.showTasks();
+        } else {
+            alert("We couldn't find that project name, make sure you write its exact name.");
+        }
+
+
+    }
+
+    const createProject = (newProject) => {
+        projectsArray.push(newProject);
     }
 
     return { searchProject };
