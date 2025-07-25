@@ -1,4 +1,5 @@
 // TODO: Poner argumentos opcionales
+// Identificar de qué proyecto proviene cada task!
 const homePageModule = (function () {
 
     class Project {
@@ -50,7 +51,7 @@ const homePageModule = (function () {
 
     }
 
-    let projectsArray = [new Project("project1", "sample project")];
+    let projectsArray = [new Project("project1", "sample project"), new Project("project2", "sample project 2"), new Project("project3", "sample project 3")];
 
     console.log("**************WELCOME**************");
 
