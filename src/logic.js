@@ -87,7 +87,14 @@ const homePageModule = (function () {
 
     }
 
-    return { searchProject, createProject };
+    // project click (id and event listeners will be used in the future)
+    const loadProject = () => {
+
+
+    }
+
+
+    return { searchProject, createProject, loadProject };
 
 })();
 
