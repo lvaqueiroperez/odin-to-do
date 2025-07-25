@@ -16,18 +16,18 @@ const homePageModule = (function () {
         }
 
         deleteTask(idToDelete) {
-            this.tasks.splice(this.tasks.findIndex((task) => task.id === idToDelete), 1);
-            console.log("Current tasks: \n" + this.tasks);
+            this.#tasks.splice(this.#tasks.findIndex((task) => task.id === idToDelete), 1);
+            console.log("Current tasks: \n" + this.#tasks);
         }
 
         getTasks() {
             console.log("PROJECT NAME: " + this.name);
-            console.table(this.tasks);
-            return this.tasks;
+            console.table(this.#tasks);
+            return this.#tasks;
         }
 
         addTask(newTask) {
-            this.tasks.push(newTask);
+            this.#tasks.push(newTask);
         }
 
     }
@@ -47,15 +47,15 @@ const homePageModule = (function () {
 
 
         getTaskId() {
-            return this.taskId;
+            return this.#taskId;
         }
 
         getProjectId() {
-            return this.getProjectId;
+            return this.#projectId;
         }
 
         setProjectId(projectId) {
-            this.projectId = projectId;
+            this.#projectId = projectId;
         }
 
     }
@@ -104,8 +104,23 @@ const homePageModule = (function () {
 
     }
 
+    const showGlobalProject = () => {
 
-    return { searchProject, createProject, loadProject };
+        let allTasksArray = globalTasksArray;
+
+        projectsArray.forEach((project) => {
+
+            allTasksArray.push(...project.getTasks());
+
+        });
+
+        console.log("***GLOBAL PROJECT***");
+        console.table(allTasksArray);
+
+    }
+
+
+    return { searchProject, createProject, loadProject, showGlobalProject };
 
 })();
 
