@@ -56,6 +56,7 @@ const homePageModule = (function () {
 
     console.table(projectsArray);
 
+    // search bar
     const searchProject = () => {
 
         let projectName = prompt("Write the name of the project", "");
@@ -73,6 +74,7 @@ const homePageModule = (function () {
 
     }
 
+    // + button click
     const createProject = () => {
 
         const projectName = prompt("Please, enter the new project's name");
