@@ -20,9 +20,10 @@ const homePageModule = (function () {
             console.log("Current tasks: \n" + this.tasks);
         }
 
-        showTasks() {
+        getTasks() {
             console.log("PROJECT NAME: " + this.name);
             console.table(this.tasks);
+            return this.tasks;
         }
 
         addTask(newTask) {
