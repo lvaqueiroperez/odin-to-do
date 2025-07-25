@@ -3,7 +3,9 @@ const homePageModule = (function () {
 
     class Project {
 
-        tasks = [new Task("task1", "sample task", "01/01/2026", true)];
+        #id = crypto.randomUUID();
+
+        #tasks = [new Task("task1", "sample task", "01/01/2026", true)];
 
         constructor(name, description) {
 
