@@ -71,10 +71,6 @@ const homePageModule = (function () {
 
     }
 
-    const createProject = (newProject) => {
-        projectsArray.push(newProject);
-    }
-
     return { searchProject };
 
 })();
