@@ -18,7 +18,7 @@ const homePageModule = (function () {
         }
 
         showTasks() {
-            console.log("PROJECT: " + this.name);
+            console.log("PROJECT NAME: " + this.name);
             console.table(this.tasks);
         }
 
@@ -55,10 +55,12 @@ const homePageModule = (function () {
     console.table(projectsArray);
 
     const searchProject = (string) => {
-        return projectsArray.find((project) => {
-            project.name.toLowerCase() === string.toLowerCase();
-        });
+        return projectsArray.find((project) =>
+            project.name.toLowerCase() === string.toLowerCase()
+        );
     }
+
+    return { searchProject };
 
 })();
 
