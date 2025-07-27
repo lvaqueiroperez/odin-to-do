@@ -1,5 +1,6 @@
 // TODO: Poner argumentos opcionales
-// Identificar de qué proyecto proviene cada task!
+// Crear global tasks y asociarlas a un proyecto ya existente, así como eliminarlas
+// y cambiar su estado
 const homePageModule = (function () {
 
     class Project {
@@ -21,8 +22,8 @@ const homePageModule = (function () {
         }
 
         getTasks() {
-            console.log("PROJECT NAME: " + this.name);
-            console.table(this.#tasks);
+            // console.log("PROJECT NAME: " + this.name);
+            // console.table(this.#tasks);
             return this.#tasks;
         }
 
@@ -119,8 +120,22 @@ const homePageModule = (function () {
 
     }
 
+    const createGlobalTask = () => {
 
-    return { searchProject, createProject, loadProject, showGlobalProject };
+        const taskName = prompt("Please, enter the new task's name");
+        const taskDescription = prompt("Please, enter the new task's description");
+        const taskDueDate = prompt("Please, enter the new task's due date");
+        const taskPriority = prompt("Does this new task have priority? yes/no") === "yes" ? true : false;
+
+        globalTasksArray.push(new Task(taskName, taskDescription, taskDueDate, taskPriority));
+
+        console.log("NEW GLOBAL TASK ADDED");
+        console.table(globalTasksArray);
+
+    }
+
+
+    return { searchProject, createProject, loadProject, showGlobalProject, createGlobalTask };
 
 })();
 
