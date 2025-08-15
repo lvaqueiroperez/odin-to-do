@@ -98,7 +98,7 @@ const homePageModule = (function () {
         );
 
         if (project) {
-            return project.showTasks();
+            console.table(project.getTasks());
         } else {
             alert("We couldn't find that project name, make sure you write its exact name.");
         }
