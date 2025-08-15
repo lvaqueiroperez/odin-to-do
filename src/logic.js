@@ -1,6 +1,9 @@
 // TODO: Poner argumentos opcionales
 // Crear global tasks y asociarlas a un proyecto ya existente, así como eliminarlas
 // y cambiar su estado
+// Acabar todas las funcionalidades de la homepage + proyecto global, luego pasar
+// a las funcionalidades de los projectos y sus tasks
+
 
 // Me mola mucho este estilo de programación modular, creo funcionalidades como módulos
 // que luego serán fáciles de añadir junto al DOM!
