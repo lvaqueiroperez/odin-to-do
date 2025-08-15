@@ -54,6 +54,11 @@ const homePageModule = (function () {
 
         }
 
+        pushTask(newTask) {
+            newTask.setProjectId(this.getId);
+            this.#tasks.push(newTask);
+        }
+
     }
 
     class Task {
