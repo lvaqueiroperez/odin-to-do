@@ -11,19 +11,19 @@ const homePageModule = (function () {
 
     class Project {
 
-        #id = crypto.randomUUID();
 
-        #tasks = [new Task("task1", "sample task", "01/01/2026", true, this.#id)];
+        #tasks = [];
 
         constructor(name, description) {
 
             this.name = name;
             this.description = description;
+            this.id = crypto.randomUUID();
 
         }
 
         getId() {
-            return this.#id;
+            return this.id;
         }
 
         deleteTask(idToDelete) {
@@ -55,7 +55,7 @@ const homePageModule = (function () {
         }
 
         pushTask(newTask) {
-            newTask.setProjectId(this.getId);
+            newTask.setProjectId(this.getId());
             this.#tasks.push(newTask);
         }
 
