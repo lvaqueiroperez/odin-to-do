@@ -66,12 +66,13 @@ const homePageModule = (function () {
         #taskId = crypto.randomUUID();
         #projectId = "global";
 
-        constructor(title, description, dueDate, priority) {
+        constructor(title, description, dueDate, priority, projectId = "global") {
             this.title = title;
             this.description = description;
             this.dueDate = dueDate;
             this.priority = priority;
             this.done = false;
+            this.projectId = projectId;
         }
 
 
@@ -80,11 +81,11 @@ const homePageModule = (function () {
         }
 
         getProjectId() {
-            return this.#projectId;
+            return this.projectId;
         }
 
         setProjectId(projectId) {
-            this.#projectId = projectId;
+            this.projectId = projectId;
         }
 
     }
