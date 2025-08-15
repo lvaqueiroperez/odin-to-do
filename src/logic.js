@@ -13,7 +13,7 @@ const homePageModule = (function () {
 
         #id = crypto.randomUUID();
 
-        #tasks = [new Task("task1", "sample task", "01/01/2026", true)];
+        #tasks = [new Task("task1", "sample task", "01/01/2026", true, this.#id)];
 
         constructor(name, description) {
 
