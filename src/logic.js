@@ -64,7 +64,6 @@ const homePageModule = (function () {
     class Task {
 
         #taskId = crypto.randomUUID();
-        #projectId = "global";
 
         constructor(title, description, dueDate, priority, projectId = "global") {
             this.title = title;
