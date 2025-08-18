@@ -84,6 +84,17 @@ const homePageModule = (function () {
                         alert("Sorry, we couldn't find that class.");
                     }
 
+                    break;
+
+                case "3":
+
+                    // habrá que revisar en un futuro el límite de caracteres
+                    const newName = prompt("Please, enter the new project's name", "");
+
+                    projectFound.name = newName;
+
+                    console.log("CHANGED PROJECT'S NAME");
+                    console.table(projectFound);
 
                     break;
 
