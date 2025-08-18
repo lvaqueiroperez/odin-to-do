@@ -98,6 +98,18 @@ const homePageModule = (function () {
 
                     break;
 
+                case "4":
+
+                    // habrá que revisar en un futuro el límite de caracteres
+                    const newDesc = prompt("Please, enter the new project's description", "");
+
+                    projectFound.description = newDesc;
+
+                    console.log("CHANGED PROJECT'S DESCRIPTION");
+                    console.table(projectFound);
+
+                    break;
+
 
 
             }
