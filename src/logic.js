@@ -220,8 +220,31 @@ const homePageModule = (function () {
 
     }
 
+    // de momento solo permitir borrar las tasks globales, las de proyectos habrá que acceder a proyectos para borrarlas
+    // pendiente de usar siempre id para encontrar cosas que queramos editar o borrar, ya que puede haber titles o nombres iguales
+    const deleteGlobalTask = () => {
 
-    return { searchProject, createProject, loadProject, showGlobalProject, createGlobalTask, associateGlobalTaskWithProject };
+        const taskTitle = prompt("Please, enter the title of the task you want to delete:");
+
+        const foundTask = globalTasksArray.find(task => task.title === taskTitle);
+
+        if (foundTask.getProjectId === "global") {
+
+            globalTasksArray.splice(globalTasksArray.findIndex(task => task.id === foundTask.id), 1);
+            console.log("TASK DELETED FROM GLOBAL PROJECT");
+            console.table(globalTasksArray);
+
+        } else {
+            alert("This task is currently associated to a project, if you want to delete it, do it inside that project.");
+        }
+
+        console.log("NEW GLOBAL TASK ADDED");
+        console.table(globalTasksArray);
+
+    }
+
+
+    return { searchProject, createProject, loadProject, showGlobalProject, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask };
 
 })();
 
