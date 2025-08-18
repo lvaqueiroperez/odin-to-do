@@ -1,5 +1,6 @@
 // Me mola mucho este estilo de programación modular, creo funcionalidades como módulos
 // que luego serán fáciles de añadir junto al DOM!
+// CREAR EDIT GLOBAL TASK, EDIT PROJECT TASK, ORDENAR CÓDIGO Y PONER BONITO, INTERFAZ
 import { Project, Task } from "./TaskProjectClasses";
 import { projectsArray, globalTasksArray } from "./data";
 
@@ -243,8 +244,34 @@ const homePageModule = (function () {
 
     }
 
+    const editGlobalTask = () => {
 
-    return { searchProject, createProject, loadProject, showGlobalProject, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask };
+        const taskTitle = prompt("Please, enter the title of the task you want to edit:");
+
+        const foundTask = globalTasksArray.find(task => task.title.toLowerCase() === taskTitle.toLowerCase());
+
+        if (foundTask.getProjectId() === "global") {
+
+            // que aparezca un formulario con los campos a editar, un botón de cancelar y otro de save
+            // campos ya rellenados con la información existente
+            console.log("TASK TO EDIT:");
+            console.table(foundTask);
+            foundTask.title = prompt("Enter the task's title:", "");
+            foundTask.description = prompt("Enter the task's description:", "");
+            foundTask.dueDate = prompt("Enter the task's due date:", "");
+            foundTask.priority = prompt("Is this a priority? (yes/no):", "") === "yes" ? true : false;
+
+            console.log("TASK EDITED:");
+            console.table(foundTask);
+
+        } else {
+            alert("This task is currently associated to a project, if you want to edit it, do it inside that project.");
+        }
+
+    }
+
+
+    return { searchProject, createProject, loadProject, showGlobalProject, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
 
 })();
 
