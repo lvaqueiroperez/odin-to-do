@@ -52,7 +52,23 @@ const homePageModule = (function () {
 
         if (projectFound) {
 
+            console.log("PROJECT FOUND:");
             console.table(projectFound);
+
+            const userInput = prompt("1: Add new task to project\n2: Toggle task done\n3: Edit project name\n4: Edit project description\n5: Delete Task\n6: Delete Project", "");
+
+            switch (userInput) {
+                case "1":
+
+
+
+                    break;
+
+
+
+            }
+
+
 
         } else {
             alert("Sorry, we couln't find that project.");
