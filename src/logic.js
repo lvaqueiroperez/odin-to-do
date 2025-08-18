@@ -97,6 +97,8 @@ const homePageModule = (function () {
     console.table(projectsArray);
 
     // search bar
+    // add autocomplete with form logic
+    // display error message when not found
     const searchProject = () => {
 
         let projectName = prompt("Write the name of the project", "");
