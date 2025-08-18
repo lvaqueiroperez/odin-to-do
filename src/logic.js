@@ -162,8 +162,44 @@ const homePageModule = (function () {
 
     }
 
+    const associateGlobalTaskWithProject = () => {
 
-    return { searchProject, createProject, loadProject, showGlobalProject, createGlobalTask };
+        console.log("Global Tasks without project:");
+        console.table(globalTasksArray);
+        console.log("Projects:");
+        console.table(projectsArray);
+
+        const taskTitle = prompt("Enter the title of the task you want to associate a project with");
+        const projectName = prompt("Enter the name of the task's project");
+
+        const targetProject = projectsArray.find((project) => project.name === projectName);
+
+        const targetTask = globalTasksArray.find((task) => task.title === taskTitle);
+
+        // crear una mejor comprobación y manejo de errores
+        if ((targetProject) && (targetTask)) {
+
+            console.log("TASK'S PROJECT ID: " + targetTask.getProjectId());
+
+            targetProject.pushTask(targetTask);
+            console.log(targetProject.getTasks());
+
+            //Delete tasks from global tasks array
+            globalTasksArray.splice(globalTasksArray.findIndex((task) => task.getTaskId() === targetTask.getTaskId()), 1);
+
+            console.log("TASK ADDED TO PROJECT: " + projectName + "\nGLOBAL PROJECT STATUS:");
+            console.table(showGlobalProject());
+
+
+
+        } else {
+            alert("Sorry, we couldn't find that project or task.");
+        }
+
+    }
+
+
+    return { searchProject, createProject, loadProject, showGlobalProject, createGlobalTask, associateGlobalTaskWithProject };
 
 })();
 
