@@ -75,6 +75,10 @@ const Task = class {
         this.projectId = projectId;
     }
 
+    toggleDone() {
+        this.done = !this.done;
+    }
+
 }
 
 export { Project, Task }; 
