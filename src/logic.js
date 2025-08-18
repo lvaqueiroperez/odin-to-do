@@ -60,7 +60,9 @@ const homePageModule = (function () {
             switch (userInput) {
                 case "1":
 
-
+                    projectFound.addTask();
+                    console.log("NEW TASK ADDED:");
+                    console.table(projectFound);
 
                     break;
 
