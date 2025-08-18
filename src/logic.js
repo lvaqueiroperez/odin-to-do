@@ -1,6 +1,6 @@
 // Me mola mucho este estilo de programación modular, creo funcionalidades como módulos
 // que luego serán fáciles de añadir junto al DOM!
-// CREAR EDIT GLOBAL TASK, EDIT PROJECT TASK, ORDENAR CÓDIGO Y PONER BONITO, INTERFAZ
+// ORDENAR CÓDIGO Y PONER BONITO PARA REPASAR ==> INTERFAZ
 import { Project, Task } from "./TaskProjectClasses";
 import { projectsArray, globalTasksArray } from "./data";
 
@@ -56,7 +56,7 @@ const homePageModule = (function () {
             console.log("PROJECT FOUND:");
             console.table(projectFound);
 
-            const userInput = prompt("1: Add new task to project\n2: Toggle task done\n3: Edit project name\n4: Edit project description\n5: Delete Task\n6: Delete Project", "");
+            const userInput = prompt("1: Add new task to project\n2: Toggle task done\n3: Edit project name\n4: Edit project description\n5: Delete Task\n6: Delete Project\n7: Edit Project Task", "");
 
             switch (userInput) {
                 case "1":
@@ -142,6 +142,32 @@ const homePageModule = (function () {
                     } else {
                         break;
                     }
+
+                case "7":
+
+                    const projectTaskTitle = prompt("Please, enter the title of the project's task you want to edit:");
+
+                    const foundTask = projectFound.getTasks().find(task => task.title.toLowerCase() === projectTaskTitle.toLowerCase());
+
+                    if (foundTask) {
+
+                        // que aparezca un formulario con los campos a editar, un botón de cancelar y otro de save
+                        // campos ya rellenados con la información existente
+                        console.log("TASK TO EDIT:");
+                        console.table(foundTask);
+                        foundTask.title = prompt("Enter the task's title:", "");
+                        foundTask.description = prompt("Enter the task's description:", "");
+                        foundTask.dueDate = prompt("Enter the task's due date:", "");
+                        foundTask.priority = prompt("Is this a priority? (yes/no):", "") === "yes" ? true : false;
+
+                        console.log("TASK EDITED:");
+                        console.table(foundTask);
+
+                    } else {
+                        alert("We couldn't find that task's name, sorry.");
+                    }
+
+                    break;
 
 
 
