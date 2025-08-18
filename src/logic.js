@@ -23,6 +23,7 @@ const homePageModule = (function () {
         );
 
         if (project) {
+            console.log("PROJECT FOUND, HERE ARE ITS TASKS:");
             console.table(project.getTasks());
         } else {
             alert("We couldn't find that project name, make sure you write its exact name.");
