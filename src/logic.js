@@ -66,6 +66,27 @@ const homePageModule = (function () {
 
                     break;
 
+                case "2":
+
+                    const taskTitle = prompt("Please, enter the task title", "");
+
+                    const targetTask = projectFound.getTasks().find((task) => task.title === taskTitle);
+
+                    if (targetTask) {
+
+                        targetTask.toggleDone();
+                        console.log("TASK TOGGLED: ");
+                        console.table(targetTask);
+                        console.log("PROJECT STATUS:");
+                        console.log(projectFound);
+
+                    } else {
+                        alert("Sorry, we couldn't find that class.");
+                    }
+
+
+                    break;
+
 
 
             }
