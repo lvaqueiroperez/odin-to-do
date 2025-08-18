@@ -110,6 +110,27 @@ const homePageModule = (function () {
 
                     break;
 
+                case "5":
+
+                    console.table(projectFound.getTasks());
+                    // se seleccionará gráficamente
+                    const deletedTaskTitle = prompt("Please, select the task you want to delete from this project: ", "");
+
+                    const deleteTaskIndex = projectFound.getTasks().findIndex(task => task.title === deletedTaskTitle);
+
+                    if (deleteTaskIndex || deleteTaskIndex === 0) {
+                        projectFound.getTasks().splice(deleteTaskIndex, 1);
+                        console.log("TASK REMOVED FROM PROJECT:");
+                        console.table(projectFound);
+                        console.table(projectFound.getTasks());
+
+
+                    } else {
+                        alert("Sorry, we couldn't find that task in this project.");
+                    }
+
+                    break;
+
 
 
             }
