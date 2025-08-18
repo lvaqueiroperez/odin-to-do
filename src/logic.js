@@ -131,6 +131,17 @@ const homePageModule = (function () {
 
                     break;
 
+                case "6":
+
+                    if (window.confirm("Are you sure you want to delete this project?")) {
+
+                        projectsArray.splice(projectsArray.findIndex(project => projectFound.id === project.id), 1);
+                        break;
+
+                    } else {
+                        break;
+                    }
+
 
 
             }
