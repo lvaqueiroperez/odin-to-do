@@ -18,12 +18,12 @@ const homePageModule = (function () {
 
             this.name = name;
             this.description = description;
-            this.id = crypto.randomUUID();
+            this._id = crypto.randomUUID();
 
         }
 
-        getId() {
-            return this.id;
+        get id() {
+            return this._id;
         }
 
         deleteTask(idToDelete) {
@@ -45,7 +45,7 @@ const homePageModule = (function () {
             const taskPriority = prompt("Does this new task have priority? yes/no") === "yes" ? true : false;
 
             const newTask = new Task(taskName, taskDescription, taskDueDate, taskPriority);
-            newTask.setProjectId(this.getId);
+            newTask.setProjectId(this.id);
 
             this.#tasks.push(newTask);
 
@@ -55,7 +55,7 @@ const homePageModule = (function () {
         }
 
         pushTask(newTask) {
-            newTask.setProjectId(this.getId());
+            newTask.setProjectId(this.id);
             this.#tasks.push(newTask);
         }
 
