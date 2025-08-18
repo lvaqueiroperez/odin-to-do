@@ -44,7 +44,19 @@ const homePageModule = (function () {
     }
 
     // project click (id and event listeners will be used in the future)
+    // show the project and its options (new menu like index.js)
     const loadProject = () => {
+
+        const projectName = prompt("Please, enter the new project's name (en el futuro se clickará)");
+        const projectFound = projectsArray.find((project) => { return project.name.toLowerCase() === projectName.toLowerCase() });
+
+        if (projectFound) {
+
+            console.table(projectFound);
+
+        } else {
+            alert("Sorry, we couln't find that project.");
+        }
 
 
     }
