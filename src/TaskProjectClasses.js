@@ -49,9 +49,12 @@ const Project = class {
 
 }
 
+/*
+No sé yo si hace especial falta, en este caso, usar los getters/setters de js,
+de momento no aportan mucho, solo que visualmente los campos id son importantes y ya.
+Pendiente de revisar esto y quizás ponerlo de una manera más sólida.
+*/
 const Task = class {
-
-    #taskId = crypto.randomUUID();
 
     constructor(title, description, dueDate, priority, projectId = "global") {
         this.title = title;
@@ -60,11 +63,12 @@ const Task = class {
         this.priority = priority;
         this.done = false;
         this.projectId = projectId;
+        this._taskId = crypto.randomUUID();
     }
 
 
-    getTaskId() {
-        return this.#taskId;
+    get taskId() {
+        return this._taskId;
     }
 
     getProjectId() {

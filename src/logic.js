@@ -234,7 +234,7 @@ const homePageModule = (function () {
             console.log(targetProject.getTasks());
 
             //Delete tasks from global tasks array
-            globalTasksArray.splice(globalTasksArray.findIndex((task) => task.getTaskId() === targetTask.getTaskId()), 1);
+            globalTasksArray.splice(globalTasksArray.findIndex((task) => task.taskId === targetTask.taskId), 1);
 
             console.log("TASK ADDED TO PROJECT: " + projectName + "\nGLOBAL PROJECT STATUS:");
             console.table(showGlobalProject());
