@@ -1,6 +1,6 @@
-// Me mola mucho este estilo de programación modular, creo funcionalidades como módulos
-// que luego serán fáciles de añadir junto al DOM!
-// ORDENAR CÓDIGO Y PONER BONITO PARA REPASAR ==> INTERFAZ
+// LÓGICA DE LA APLICACIÓN
+// PONER EN UN FUTURO UN INTERMEDIARIO PARA TODO EL CÓDIGO RELATIVO A PUSHEAR CAMBIOS
+// AL LA DB/ARRAYS? O OBTENERLOS (principios S y D en SOLID)
 import { Project, Task } from "./TaskProjectClasses";
 import { projectsArray, globalTasksArray } from "./data";
 
@@ -56,6 +56,7 @@ const homePageModule = (function () {
             console.log("PROJECT FOUND:");
             console.table(projectFound);
 
+            // código donde se pondrá un event listener que ejecutará todas las opciones de este switch tras mostrar el projecto
             const userInput = prompt("1: Add new task to project\n2: Toggle task done\n3: Edit project name\n4: Edit project description\n5: Delete Task\n6: Delete Project\n7: Edit Project Task", "");
 
             switch (userInput) {
