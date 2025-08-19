@@ -16,12 +16,10 @@ const Project = class {
 
     deleteTask(idToDelete) {
         this.#tasks.splice(this.#tasks.findIndex((task) => task.id === idToDelete), 1);
-        console.log("Current tasks: \n" + this.#tasks);
+        console.log("Current project tasks: \n" + this.#tasks);
     }
 
     getTasks() {
-        // console.log("PROJECT NAME: " + this.name);
-        // console.table(this.#tasks);
         return this.#tasks;
     }
 
