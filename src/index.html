@@ -13,7 +13,13 @@
         <h1>Simple To Do</h1>
     </div>
 
-    <!--Poner autocomplete?-->
+    <!--
+    *Poner autocomplete? haría una petición al servidor por cada 1 o 2 caracteres presionados (si es que se puede hacer eso)
+    *También podría hacer que el nombre del proyecto usado no tuviera que ser exacto, o solo una parte
+    *Mostrar todos los resultados si hay más de un proyecto con el mismo nombre
+    *De momento solo autocompleto el nombre, luego habrá que darle al botón de buscar
+    *Queda pendiente limitar los resultados del autocomplete para que no ocupen mucha pantalla
+    -->
     <div class="homepageSearchProjectContainer">
 
         <form action="#" method="get">
@@ -21,8 +27,11 @@
             <section class="searchProject">
                 <div>
                     <input type="search" id="seachProject" name="seachProject" maxlength="100"
-                        placeholder="Type the name of a project...">
+                        placeholder="Type the name of a project..." list="projectList">
                 </div>
+                <datalist id="projectList">
+
+                </datalist>
                 <button type="button">search</button>
             </section>
 
@@ -30,8 +39,12 @@
 
     </div>
 
-    <!--Usar elipsis aquí cuando se supere el límite de proyectos mostrados, indicar
-    visualmente que hay más-->
+    <!--
+    *Usar elipsis aquí cuando se supere el límite de proyectos mostrados, indicar
+    visualmente que hay más
+    *O usar scrollbar con overflow? igual es mejor elipsis y mostrar los que han sido 
+    modificados por última vez, los 10 últimos por ejemplo
+    -->
     <div class="homepageProjectListContainer">
 
     </div>
