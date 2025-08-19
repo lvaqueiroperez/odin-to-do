@@ -4,7 +4,7 @@ import { projectsArray, globalTasksArray } from "./data";
 
 const homePageDOM = (function () {
 
-    const homepageProjectListSection = document.querySelector(".homepageProjectListSection");
+    const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
 
     const loadHomepageProjectList = function () {
 
@@ -14,7 +14,7 @@ const homePageDOM = (function () {
             projectButton.textContent = project.name;
             projectButton.setAttribute("data-projectId", project.id);
 
-            homepageProjectListSection.appendChild(projectButton);
+            homepageProjectListContainer.appendChild(projectButton);
 
         });
 
