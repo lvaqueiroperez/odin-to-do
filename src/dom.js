@@ -1,3 +1,27 @@
-export default function greet2() {
-    console.log("this is DOM, roger!");
-}
+// CÓDIGO DE ITERACCIÓN CON EL USER Y CON EL DOM
+// hacer la función de load event listeners cuando el dom esté cargado?
+import { projectsArray, globalTasksArray } from "./data";
+
+const homePageDOM = (function () {
+
+    const homepageProjectListSection = document.querySelector(".homepageProjectListSection");
+
+    const loadHomepageProjectList = function () {
+
+        projectsArray.forEach((project) => {
+
+            const projectButton = document.createElement("button");
+            projectButton.textContent = project.name;
+            projectButton.setAttribute("data-projectId", project.id);
+
+            homepageProjectListSection.appendChild(projectButton);
+
+        });
+
+    }
+
+    return { loadHomepageProjectList };
+
+})();
+
+export { homePageDOM };
