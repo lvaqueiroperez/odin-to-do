@@ -4,9 +4,9 @@ import { projectsArray, globalTasksArray } from "./data";
 
 const homePageDOM = (function () {
 
-    const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
-
     const loadHomepageProjectList = function () {
+
+        const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
 
         projectsArray.forEach((project) => {
 
