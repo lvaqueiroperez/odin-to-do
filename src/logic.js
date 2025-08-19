@@ -230,7 +230,7 @@ const homePageModule = (function () {
 
             console.log("TASK'S PROJECT ID: " + targetTask.getProjectId());
 
-            targetProject.pushTask(targetTask);
+            targetProject.addTask(targetTask);
             console.log(targetProject.getTasks());
 
             //Delete tasks from global tasks array

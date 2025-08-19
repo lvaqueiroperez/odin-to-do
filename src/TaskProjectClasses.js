@@ -23,26 +23,28 @@ const Project = class {
         return this.#tasks;
     }
 
-    addTask() {
+    addTask(newTask = "") {
 
-        const taskName = prompt("Please, enter the new task's name");
-        const taskDescription = prompt("Please, enter the new task's description");
-        const taskDueDate = prompt("Please, enter the new task's due date");
-        const taskPriority = prompt("Does this new task have priority? yes/no") === "yes" ? true : false;
+        if (newTask) {
 
-        const newTask = new Task(taskName, taskDescription, taskDueDate, taskPriority);
-        newTask.setProjectId(this.id);
+            newTask.setProjectId(this.id);
+            this.#tasks.push(newTask);
 
-        this.#tasks.push(newTask);
+        } else {
+            const taskName = prompt("Please, enter the new task's name");
+            const taskDescription = prompt("Please, enter the new task's description");
+            const taskDueDate = prompt("Please, enter the new task's due date");
+            const taskPriority = prompt("Does this new task have priority? yes/no") === "yes" ? true : false;
 
-        console.log("NEW TASK ADDED");
+            const newTask = new Task(taskName, taskDescription, taskDueDate, taskPriority);
+            newTask.setProjectId(this.id);
+
+            this.#tasks.push(newTask);
+        }
+
+        console.log("NEW TASK ADDED TO THIS PROJECT");
         console.table(this.#tasks);
 
-    }
-
-    pushTask(newTask) {
-        newTask.setProjectId(this.id);
-        this.#tasks.push(newTask);
     }
 
 }
