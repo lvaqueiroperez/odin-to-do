@@ -184,7 +184,9 @@ const homePageModule = (function () {
 
     const showGlobalProject = () => {
 
-        let allTasksArray = globalTasksArray;
+        let allTasksArray = [];
+
+        allTasksArray.push(...globalTasksArray);
 
         projectsArray.forEach((project) => {
 
