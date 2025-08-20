@@ -85,13 +85,13 @@ const homePageDOM = (function () {
     }
 
     function addEraseSearchResultsButton(element) {
+
         const eraseResultsButton = document.createElement("button");
         eraseResultsButton.textContent = "erase results";
 
         element.appendChild(eraseResultsButton);
 
-        // todo: open and close event listener when clicked or another search it's done, or
-        // when going to global proyect
+        // event listener is deleted after use or when its element is removed
         eraseResultsButton.addEventListener("click", (e) => {
 
             loadHomepageProjectList();
