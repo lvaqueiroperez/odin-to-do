@@ -166,7 +166,7 @@ const homePageModule = (function () {
 
     }
 
-    const showGlobalProject = () => {
+    const getGlobalProjectTasks = () => {
 
         let allTasksArray = [];
 
@@ -178,8 +178,7 @@ const homePageModule = (function () {
 
         });
 
-        console.log("***GLOBAL PROJECT***");
-        console.table(allTasksArray);
+        return allTasksArray;
 
     }
 
@@ -223,7 +222,7 @@ const homePageModule = (function () {
             globalTasksArray.splice(globalTasksArray.findIndex((task) => task.taskId === targetTask.taskId), 1);
 
             console.log("TASK ADDED TO PROJECT: " + projectName + "\nGLOBAL PROJECT STATUS:");
-            console.table(showGlobalProject());
+            console.table(getGlobalProjectTasks());
 
 
 
