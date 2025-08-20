@@ -49,6 +49,40 @@
 
     </div>
 
+    <dialog class="createProjectDialog">
+
+        <button type="button" id="exitCreateProjectButton">X</button>
+
+        <form>
+
+            <h2>Create New To Do Project</h2>
+
+            <section class="projectData">
+
+                <div>
+                    <label for="projectName">
+                        <span>Project Name:</span>
+                    </label>
+                    <input type="text" id="projectName" name="projectName" maxlength="30">
+                </div>
+
+                <div>
+                    <label for="projectDescription">
+                        <span>Project Description:</span>
+                    </label>
+                    <input type="text" id="projectDescription" name="projectDescription" maxlength="30">
+                </div>
+
+                <div>
+                    <button type="button" id="submitCreateProjectButton">Submit</button>
+                </div>
+
+            </section>
+
+        </form>
+
+    </dialog>
+
     <!--TODO: en vez de ir directamente, mostrar una animación de scrolleo, más fancy-->
     <div class="globalProjectButtonContainer">
         <a href="#globalProject">
