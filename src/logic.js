@@ -4,6 +4,14 @@ import { projectsArray, globalTasksArray } from "./data";
 
 const homePageModule = (function () {
 
+    const getProjectNameById = (projectId) => {
+
+        projectsArray.find((project) => {
+            return project.id === projectId;
+        });
+
+    }
+
     const searchProjects = (projectName) => {
 
         // filter retorna en un array todos los resultados que cumplan con la condición
@@ -282,7 +290,7 @@ const homePageModule = (function () {
     }
 
 
-    return { searchProject: searchProjects, createProject, loadProject, showGlobalProject, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
+    return { getProjectNameById, searchProjects, createProject, loadProject, getGlobalProjectTasks, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
 
 })();
 
