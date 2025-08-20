@@ -6,7 +6,7 @@ import { homePageModule } from "./logic";
 const homePageDOM = (function () {
 
     const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
-
+    const globalProjectContainer = document.querySelector(".globalProjectContainer");
 
     const loadHomepageProjectList = function () {
 
