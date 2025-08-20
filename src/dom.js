@@ -91,7 +91,7 @@ const homePageDOM = (function () {
 
             const projectName = document.querySelector("input[type='search']").value;
 
-            const foundProjects = homePageModule.searchProject(projectName);
+            const foundProjects = homePageModule.searchProjects(projectName);
 
             if (foundProjects.length > 0) {
 
