@@ -41,6 +41,41 @@ const homePageDOM = (function () {
 
     }
 
+    const loadGlobalProject = function () {
+
+        homePageModule.getGlobalProjectTasks().forEach((task) => {
+
+            const taskCard = document.createElement("div");
+            taskCard.setAttribute("class", "taskCard");
+
+            const taskTitle = document.createElement("p");
+            taskTitle.textContent = task.title;
+
+            // todo: descriptions must be short, put a maxlength
+            const taskDesc = document.createElement("p");
+            taskDesc.textContent = task.description;
+
+            const taskDueDate = document.createElement("p");
+            taskDueDate.textContent = task.dueDate;
+
+            const taskDone = document.createElement("p");
+            taskDone.textContent = task.done === true ? "Done." : "Not Done.";
+
+            const taskProject = document.createElement("p");
+
+            const taskProjectName = task.getProjectId() === "global" ? "global" : homePageModule.getProjectNameById(task.getProjectId);
+
+            taskProject.textContent = "Project: " + taskProjectName;
+
+            taskCard.append(taskTitle, taskDesc, taskDueDate, taskDone, taskProject);
+
+            globalProjectContainer.appendChild(taskCard);
+
+        });
+
+    }
+
+
     const loadHomepageEventListeners = function () {
 
         const searchButton = document.querySelector(".searchProject>button");
@@ -99,7 +134,7 @@ const homePageDOM = (function () {
         }, { once: true });
     }
 
-    return { loadHomepageProjectList, loadProjectSearchDatalist, loadHomepageEventListeners };
+    return { loadHomepageProjectList, loadProjectSearchDatalist, loadHomepageEventListeners, loadGlobalProject };
 
 })();
 
