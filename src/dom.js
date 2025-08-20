@@ -31,7 +31,6 @@ const homePageDOM = (function () {
 
     }
 
-    // limitarlo a 7 projectos mostrados en la datalist de momento?
     const loadProjectSearchDatalist = function () {
 
         const projectDatalist = document.querySelector("#projectList");
