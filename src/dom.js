@@ -23,6 +23,12 @@ const homePageDOM = (function () {
 
         });
 
+        // create project button
+        const createProjectButton = document.createElement("button");
+        createProjectButton.textContent = " + ";
+        createProjectButton.setAttribute("class", "createProjectButton");
+        homepageProjectListContainer.appendChild(createProjectButton);
+
     }
 
     const loadProjectSearchDatalist = function () {
