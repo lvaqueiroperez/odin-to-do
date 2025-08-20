@@ -1,8 +1,7 @@
 // CÓDIGO DE ITERACCIÓN CON EL USER Y CON EL DOM
 // hacer la función de load event listeners cuando el dom esté cargado?
 import { projectsArray, globalTasksArray } from "./data";
-
-const homePageDOM = (function () {
+import { homePageModule } from "./logic";
 
 function removeElementChildren(element) {
 
