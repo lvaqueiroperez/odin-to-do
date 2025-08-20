@@ -26,7 +26,7 @@ const homePageDOM = (function () {
         // create project button
         const createProjectButton = document.createElement("button");
         createProjectButton.textContent = " + ";
-        createProjectButton.setAttribute("class", "createProjectButton");
+        createProjectButton.setAttribute("id", "createProjectButton");
         homepageProjectListContainer.appendChild(createProjectButton);
 
     }
@@ -102,6 +102,20 @@ const homePageDOM = (function () {
                 alert("We couldn't find any project with that name.");
                 loadHomepageProjectList();
             }
+
+        });
+
+        homepageProjectListContainer.addEventListener("click", (e) => {
+
+
+            switch (e.target.id) {
+
+                case "createProjectButton":
+                    alert("ta da!!!");
+                    break;
+
+            }
+
 
         });
 
