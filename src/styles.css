@@ -99,3 +99,9 @@ body {
     position: absolute;
     margin-top: 105vh;
 }
+
+.taskCard {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 1em;
+}
