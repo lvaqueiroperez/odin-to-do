@@ -85,3 +85,17 @@ h6 {
 }
 
 /****************** MAIN CSS **********************/
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.globalProjectButtonContainer {
+    text-align: center;
+    margin-top: auto;
+}
+
+.globalProjectContainer {
+    position: absolute;
+    margin-top: 105vh;
+}
