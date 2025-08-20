@@ -4,28 +4,13 @@ import { projectsArray, globalTasksArray } from "./data";
 
 const homePageModule = (function () {
 
-    console.log("**************WELCOME**************");
+    const searchProjects = (projectName) => {
 
-    console.table(projectsArray);
-
-    // search bar
-    // add autocomplete with form logic
-    // display error message when not found
-    const searchProject = () => {
-
-        let projectName = prompt("Write the name of the project", "");
-
-        let project = projectsArray.find((project) =>
+        // filter retorna en un array todos los resultados que cumplan con la condición
+        // devuelve array vacío si no encuentra nada
+        return projectsArray.filter((project) =>
             project.name.toLowerCase() === projectName.toLowerCase()
         );
-
-        if (project) {
-            console.log("PROJECT FOUND, HERE ARE ITS TASKS:");
-            console.table(project.getTasks());
-        } else {
-            alert("We couldn't find that project name, make sure you write its exact name.");
-        }
-
 
     }
 
@@ -298,7 +283,7 @@ const homePageModule = (function () {
     }
 
 
-    return { searchProject, createProject, loadProject, showGlobalProject, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
+    return { searchProject: searchProjects, createProject, loadProject, showGlobalProject, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
 
 })();
 
