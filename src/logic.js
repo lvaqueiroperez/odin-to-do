@@ -1,6 +1,4 @@
 // LÓGICA DE LA APLICACIÓN
-// PONER EN UN FUTURO UN INTERMEDIARIO PARA TODO EL CÓDIGO RELATIVO A PUSHEAR CAMBIOS
-// AL LA DB/ARRAYS? O OBTENERLOS (principios S y D en SOLID)
 import { Project, Task } from "./TaskProjectClasses";
 import { projectsArray, globalTasksArray } from "./data";
 
