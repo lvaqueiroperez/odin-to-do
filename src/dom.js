@@ -6,6 +6,7 @@ import { homePageModule } from "./logic";
 const homePageDOM = (function () {
 
     const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
+    const homepageCreateProjectDialog = document.querySelector(".createProjectDialog");
     const globalProjectContainer = document.querySelector(".globalProjectContainer");
 
     const loadHomepageProjectList = function () {
@@ -111,11 +112,28 @@ const homePageDOM = (function () {
             switch (e.target.id) {
 
                 case "createProjectButton":
-                    alert("ta da!!!");
+
+                    homepageCreateProjectDialog.showModal();
+
                     break;
 
             }
 
+
+        });
+
+        // crearlo solo cuando se clicke en createProject?
+        homepageCreateProjectDialog.addEventListener("click", (e) => {
+
+            switch (e.target.id) {
+
+                case "exitCreateProjectButton":
+
+                    homepageCreateProjectDialog.close();
+
+                    break;
+
+            }
 
         });
 
