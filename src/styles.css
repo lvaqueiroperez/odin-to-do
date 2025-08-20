@@ -95,6 +95,12 @@ body {
     margin-top: auto;
 }
 
+.globalProjectButtonContainer>a {
+    color: unset;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 .globalProjectContainer {
     position: absolute;
     margin-top: 105vh;
