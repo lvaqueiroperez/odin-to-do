@@ -78,12 +78,17 @@ const homePageDOM = (function () {
 
             homepageProjectListContainer.appendChild(projectButton);
 
+            addEraseSearchResultsButton(homepageProjectListContainer);
+
         });
 
+    }
+
+    function addEraseSearchResultsButton(element) {
         const eraseResultsButton = document.createElement("button");
         eraseResultsButton.textContent = "erase results";
 
-        homepageProjectListContainer.appendChild(eraseResultsButton);
+        element.appendChild(eraseResultsButton);
 
         // todo: open and close event listener when clicked or another search it's done, or
         // when going to global proyect
@@ -92,7 +97,6 @@ const homePageDOM = (function () {
             loadHomepageProjectList();
 
         }, { once: true });
-
     }
 
     return { loadHomepageProjectList, loadProjectSearchDatalist, loadHomepageEventListeners };
