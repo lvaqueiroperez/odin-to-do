@@ -4,9 +4,18 @@ import { projectsArray, globalTasksArray } from "./data";
 
 const homePageDOM = (function () {
 
+    function removeElementChildren(element) {
+
+        Array.from(element.children).forEach(child => child.remove());
+
+    }
+
     const loadHomepageProjectList = function () {
 
         const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
+
+        removeElementChildren(homepageProjectListContainer);
+
 
         projectsArray.forEach((project) => {
 
