@@ -3,12 +3,6 @@
 import { projectsArray, globalTasksArray } from "./data";
 import { homePageModule } from "./logic";
 
-function removeElementChildren(element) {
-
-    Array.from(element.children).forEach(child => child.remove());
-
-}
-
 const homePageDOM = (function () {
 
     const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
@@ -104,5 +98,11 @@ const homePageDOM = (function () {
     return { loadHomepageProjectList, loadProjectSearchDatalist, loadHomepageEventListeners };
 
 })();
+
+function removeElementChildren(element) {
+
+    Array.from(element.children).forEach(child => child.remove());
+
+}
 
 export { homePageDOM };
