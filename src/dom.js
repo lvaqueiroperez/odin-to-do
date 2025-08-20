@@ -11,9 +11,10 @@ function removeElementChildren(element) {
 
 const homePageDOM = (function () {
 
-    const loadHomepageProjectList = function () {
+    const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
 
-        const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
+
+    const loadHomepageProjectList = function () {
 
         removeElementChildren(homepageProjectListContainer);
 
@@ -49,7 +50,6 @@ const homePageDOM = (function () {
     const loadHomepageEventListeners = function () {
 
         const searchButton = document.querySelector(".searchProject>button");
-        const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
         const globalProjectButtonContainer = document.querySelector(".globalProjectButtonContainer");
 
         searchButton.addEventListener("click", (e) => {
@@ -73,8 +73,6 @@ const homePageDOM = (function () {
     }
 
     function loadProjectSearchResults(foundProjects) {
-
-        const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
 
         removeElementChildren(homepageProjectListContainer);
 
