@@ -1,5 +1,6 @@
 // CÓDIGO DE ITERACCIÓN CON EL USER Y CON EL DOM
 // hacer la función de load event listeners cuando el dom esté cargado?
+// TODO: Refactorizar variables creadas en bucles, no crear una variable en cada vuelta!!!
 import { projectsArray, globalTasksArray } from "./data";
 import { homePageModule } from "./logic";
 
@@ -7,6 +8,8 @@ const homePageDOM = (function () {
 
     const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
     const homepageCreateProjectDialog = document.querySelector(".createProjectDialog");
+    const loadedProjectDialog = document.querySelector(".loadedProjectDialog");
+
     const globalProjectContainer = document.querySelector(".globalProjectContainer");
 
     const loadHomepageProjectList = function () {
@@ -123,6 +126,42 @@ const homePageDOM = (function () {
 
                 const projectToLoad = homePageModule.getProjectById(e.target.dataset.projectId);
                 console.log(projectToLoad);
+
+                const projectName = document.createElement("h2");
+                projectName.textContent = projectToLoad.name;
+
+                const projectDescription = document.createElement("p");
+                projectDescription.textContent = projectToLoad.description;
+
+                const tasksContainer = document.createElement("div");
+                projectToLoad.getTasks().forEach((task) => {
+
+                    console.log(task);
+
+                    const singleTaskContainer = document.createElement("div");
+                    singleTaskContainer.setAttribute("class", "taskCard");
+
+                    const taskCheckbox = document.createElement("input");
+                    taskCheckbox.setAttribute("type", "checkbox");
+                    taskCheckbox.setAttribute("id", task.taskId);
+
+                    const taskTitle = document.createElement("p");
+                    taskTitle.textContent = task.title;
+                    taskTitle.setAttribute("class", "taskTitle");
+
+                    const taskDueDate = document.createElement("p");
+                    taskDueDate.textContent = task.dueDate;
+                    taskDueDate.setAttribute("class", "taskDueDate");
+
+                    singleTaskContainer.append(taskCheckbox, taskTitle, taskDueDate);
+
+                    tasksContainer.appendChild(singleTaskContainer);
+
+                });
+
+                loadedProjectDialog.append(projectName, projectDescription, tasksContainer);
+
+                loadedProjectDialog.showModal();
 
             }
 
