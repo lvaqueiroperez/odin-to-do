@@ -2,15 +2,7 @@
 import { Project, Task } from "./TaskProjectClasses";
 import { projectsArray, globalTasksArray } from "./data";
 
-const homePageModule = (function () {
-
-    const getProjectNameById = (projectId) => {
-
-        projectsArray.find((project) => {
-            return project.id === projectId;
-        });
-
-    }
+const homepageLogic = (function () {
 
     const searchProjects = (projectName) => {
 
@@ -280,11 +272,11 @@ const homePageModule = (function () {
     }
 
 
-    return { getProjectNameById, searchProjects, createProject, getProjectById, getGlobalProjectTasks, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
+    return { searchProjects, createProject, getProjectById, getGlobalProjectTasks, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
 
 })();
 
 
 
 
-export { homePageModule };
+export { homepageLogic };
