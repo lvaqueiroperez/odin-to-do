@@ -14,13 +14,10 @@ const homepageLogic = (function () {
 
     }
 
-    // + button click
     const createProject = (projectName, projectDescription) => {
         projectsArray.push(new Project(projectName, projectDescription));
     }
 
-    // project click (id and event listeners will be used in the future)
-    // show the project and its options (new menu like index.js)
     const getProjectById = (projectId) => {
 
         const projectFound = projectsArray.find((project) => { return project.id === projectId });
