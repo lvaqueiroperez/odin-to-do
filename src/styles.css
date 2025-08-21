@@ -111,3 +111,8 @@ body {
     border-radius: 5px;
     padding: 1em;
 }
+
+.createProjectDialog {
+    align-self: center;
+    justify-self: center;
+}
