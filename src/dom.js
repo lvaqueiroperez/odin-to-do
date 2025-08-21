@@ -18,7 +18,7 @@ const homePageDOM = (function () {
 
             const projectButton = document.createElement("button");
             projectButton.textContent = project.name;
-            projectButton.setAttribute("data-projectId", project.id);
+            projectButton.setAttribute("data-project-id", project.id);
 
             homepageProjectListContainer.appendChild(projectButton);
 
@@ -113,13 +113,16 @@ const homePageDOM = (function () {
         homepageProjectListContainer.addEventListener("click", (e) => {
 
 
-            switch (e.target.id) {
+            // aunque los 2 sean botones, primero leerá este if
+            if (e.target.id === "createProjectButton") {
 
-                case "createProjectButton":
+                homepageCreateProjectDialog.showModal();
 
-                    homepageCreateProjectDialog.showModal();
+                // load project
+            } else if (e.target.tagName === "BUTTON") {
 
-                    break;
+                const projectToLoad = homePageModule.getProjectById(e.target.dataset.projectId);
+                console.log(projectToLoad);
 
             }
 
