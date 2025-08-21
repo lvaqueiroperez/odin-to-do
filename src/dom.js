@@ -148,6 +148,7 @@ const homePageDOM = (function () {
                     loadHomepageProjectList();
                     loadProjectSearchDatalist();
                     loadGlobalProject();
+                    homepageCreateProjectDialog.close();
             }
 
         });
