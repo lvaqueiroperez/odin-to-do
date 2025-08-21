@@ -230,6 +230,12 @@ const homePageDOM = (function () {
         }, { once: true });
     }
 
+    function homepageReload() {
+        loadHomepageProjectList();
+        loadProjectSearchDatalist();
+        loadGlobalProject();
+    }
+
     return { loadHomepageProjectList, loadProjectSearchDatalist, loadHomepageEventListeners, loadGlobalProject };
 
 })();
