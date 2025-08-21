@@ -36,6 +36,8 @@ const homePageDOM = (function () {
 
         const projectDatalist = document.querySelector("#projectList");
 
+        removeElementChildren(projectDatalist);
+
         projectsArray.forEach((project) => {
 
             const option = document.createElement("option");
@@ -49,6 +51,8 @@ const homePageDOM = (function () {
     }
 
     const loadGlobalProject = function () {
+
+        removeElementChildren(globalProjectContainer);
 
         homePageModule.getGlobalProjectTasks().forEach((task) => {
 
@@ -133,6 +137,17 @@ const homePageDOM = (function () {
 
                     break;
 
+                case "createProjectSubmitButton":
+
+                    const projectName = homepageCreateProjectDialog.querySelector("#projectName").value;
+                    const projectDescription = homepageCreateProjectDialog.querySelector("#projectDescription").value;
+
+                    homePageModule.createProject(projectName, projectDescription);
+                    // soft reset de la page, cargar todo de nuevo, como recargar la página... (puede que recargar la página sea útil en el futuro cuando tenga la DB)
+                    // FUNCIÓN TEMPORAL DE RELOAD:
+                    loadHomepageProjectList();
+                    loadProjectSearchDatalist();
+                    loadGlobalProject();
             }
 
         });

@@ -23,16 +23,8 @@ const homePageModule = (function () {
     }
 
     // + button click
-    const createProject = () => {
-
-        const projectName = prompt("Please, enter the new project's name");
-        const projectDescription = prompt("Please, enter the new project's description");
-
+    const createProject = (projectName, projectDescription) => {
         projectsArray.push(new Project(projectName, projectDescription));
-
-        console.log("NEW PROJECT ADDED");
-        console.table(projectsArray);
-
     }
 
     // project click (id and event listeners will be used in the future)
