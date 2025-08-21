@@ -29,6 +29,7 @@ const homePageDOM = (function () {
             const projectButton = document.createElement("button");
             projectButton.textContent = project.name;
             projectButton.setAttribute("data-project-id", project.id);
+            projectButton.setAttribute("class", "projectButton");
 
             homepageProjectListContainer.appendChild(projectButton);
 
@@ -112,7 +113,7 @@ const homePageDOM = (function () {
         homepageProjectListContainer.addEventListener("click", (e) => {
 
             // load project
-            if (e.target.tagName === "BUTTON") {
+            if (e.target.className === "projectButton") {
 
                 const projectToLoad = homepageLogic.getProjectById(e.target.dataset.projectId);
 
