@@ -208,7 +208,7 @@ const homePageDOM = (function () {
 
             const projectButton = document.createElement("button");
             projectButton.textContent = project.name;
-            projectButton.setAttribute("data-projectId", project.id);
+            projectButton.setAttribute("data-project-id", project.id);
 
             homepageProjectListContainer.appendChild(projectButton);
 
