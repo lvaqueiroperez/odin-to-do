@@ -29,15 +29,13 @@ const homePageModule = (function () {
 
     // project click (id and event listeners will be used in the future)
     // show the project and its options (new menu like index.js)
-    const loadProject = () => {
+    const getProjectById = (projectId) => {
 
-        const projectName = prompt("Please, enter the new project's name (en el futuro se clickará)");
-        const projectFound = projectsArray.find((project) => { return project.name.toLowerCase() === projectName.toLowerCase() });
+        const projectFound = projectsArray.find((project) => { return project.id === projectId });
 
         if (projectFound) {
 
-            console.log("PROJECT FOUND:");
-            console.table(projectFound);
+            return projectFound;
 
             // código donde se pondrá un event listener que ejecutará todas las opciones de este switch tras mostrar el projecto
             const userInput = prompt("1: Add new task to project\n2: Toggle task done\n3: Edit project name\n4: Edit project description\n5: Delete Task\n6: Delete Project\n7: Edit Project Task", "");
@@ -282,7 +280,7 @@ const homePageModule = (function () {
     }
 
 
-    return { getProjectNameById, searchProjects, createProject, loadProject, getGlobalProjectTasks, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
+    return { getProjectNameById, searchProjects, createProject, getProjectById, getGlobalProjectTasks, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
 
 })();
 
