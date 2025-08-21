@@ -206,9 +206,7 @@ const homePageDOM = (function () {
 
         foundProjects.forEach((project) => {
 
-            const projectButton = document.createElement("button");
-            projectButton.textContent = project.name;
-            projectButton.setAttribute("data-project-id", project.id);
+            const projectButton = createProjectButtonElement(project);
 
             homepageProjectListContainer.appendChild(projectButton);
 
@@ -237,6 +235,15 @@ const homePageDOM = (function () {
         loadHomepageProjectList();
         loadProjectSearchDatalist();
         loadGlobalProject();
+    }
+
+    function createProjectButtonElement(projectInstance) {
+        const projectButton = document.createElement("button");
+        projectButton.textContent = projectInstance.name;
+        projectButton.setAttribute("data-project-id", projectInstance.id);
+        projectButton.setAttribute("class", "projectButton");
+
+        return projectButton;
     }
 
     return { loadHomepageProjectList, loadProjectSearchDatalist, loadHomepageEventListeners, loadGlobalProject };
