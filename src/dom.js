@@ -1,20 +1,27 @@
 // CÓDIGO DE ITERACCIÓN CON EL USER Y CON EL DOM
 // hacer la función de load event listeners cuando el dom esté cargado?
 // TODO: Refactorizar variables creadas en bucles, no crear una variable en cada vuelta!!!
+// organizar y refactorizar, pensar qué es lo que merece estar dentro de una variable y qué no
+// al final revisar event listeners, a ver cual necesita el "once" u otro arreglo para optimizarlo
+// cuando acabe, pedir que revisen el codigo para recomendarme cosas?
 import { projectsArray, globalTasksArray } from "./data";
-import { homePageModule } from "./logic";
+import { homepageLogic } from "./logic";
+import { domUtil } from "./domUtil";
 
 const homePageDOM = (function () {
 
     const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
     const homepageCreateProjectDialog = document.querySelector(".createProjectDialog");
     const loadedProjectDialog = document.querySelector(".loadedProjectDialog");
-
     const globalProjectContainer = document.querySelector(".globalProjectContainer");
+    const projectDatalist = document.querySelector("#projectList");
+    const searchButton = document.querySelector(".searchProject>button");
+    const createProjectButton = document.querySelector("#createProjectButton");
+
 
     const loadHomepageProjectList = function () {
 
-        removeElementChildren(homepageProjectListContainer);
+        domUtil.removeElementChildren(homepageProjectListContainer);
 
 
         projectsArray.forEach((project) => {
@@ -27,19 +34,12 @@ const homePageDOM = (function () {
 
         });
 
-        // create project button
-        const createProjectButton = document.createElement("button");
-        createProjectButton.textContent = " + ";
-        createProjectButton.setAttribute("id", "createProjectButton");
-        homepageProjectListContainer.appendChild(createProjectButton);
 
     }
 
     const loadProjectSearchDatalist = function () {
 
-        const projectDatalist = document.querySelector("#projectList");
-
-        removeElementChildren(projectDatalist);
+        domUtil.removeElementChildren(projectDatalist);
 
         projectsArray.forEach((project) => {
 
@@ -50,14 +50,13 @@ const homePageDOM = (function () {
 
         });
 
-
     }
 
     const loadGlobalProject = function () {
 
-        removeElementChildren(globalProjectContainer);
+        domUtil.removeElementChildren(globalProjectContainer);
 
-        homePageModule.getGlobalProjectTasks().forEach((task) => {
+        homepageLogic.getGlobalProjectTasks().forEach((task) => {
 
             const taskCard = document.createElement("div");
             taskCard.setAttribute("class", "taskCard");
@@ -65,7 +64,6 @@ const homePageDOM = (function () {
             const taskTitle = document.createElement("p");
             taskTitle.textContent = task.title;
 
-            // todo: descriptions must be short, put a maxlength
             const taskDesc = document.createElement("p");
             taskDesc.textContent = task.description;
 
@@ -77,7 +75,7 @@ const homePageDOM = (function () {
 
             const taskProject = document.createElement("p");
 
-            const taskProjectName = task.getProjectId() === "global" ? "global" : homePageModule.getProjectNameById(task.getProjectId);
+            const taskProjectName = task.getProjectId() === "global" ? "global" : homepageLogic.getProjectById(task.getProjectId).name;
 
             taskProject.textContent = "Project: " + taskProjectName;
 
@@ -92,14 +90,12 @@ const homePageDOM = (function () {
 
     const loadHomepageEventListeners = function () {
 
-        const searchButton = document.querySelector(".searchProject>button");
-        const globalProjectButtonContainer = document.querySelector(".globalProjectButtonContainer");
 
         searchButton.addEventListener("click", (e) => {
 
             const projectName = document.querySelector("input[type='search']").value;
 
-            const foundProjects = homePageModule.searchProjects(projectName);
+            const foundProjects = homepageLogic.searchProjects(projectName);
 
             if (foundProjects.length > 0) {
 
@@ -115,17 +111,10 @@ const homePageDOM = (function () {
 
         homepageProjectListContainer.addEventListener("click", (e) => {
 
+            // load project
+            if (e.target.tagName === "BUTTON") {
 
-            // aunque los 2 sean botones, primero leerá este if
-            if (e.target.id === "createProjectButton") {
-
-                homepageCreateProjectDialog.showModal();
-
-                // load project
-            } else if (e.target.tagName === "BUTTON") {
-
-                const projectToLoad = homePageModule.getProjectById(e.target.dataset.projectId);
-                console.log(projectToLoad);
+                const projectToLoad = homepageLogic.getProjectById(e.target.dataset.projectId);
 
                 const projectName = document.createElement("h2");
                 projectName.textContent = projectToLoad.name;
@@ -135,8 +124,6 @@ const homePageDOM = (function () {
 
                 const tasksContainer = document.createElement("div");
                 projectToLoad.getTasks().forEach((task) => {
-
-                    console.log(task);
 
                     const singleTaskContainer = document.createElement("div");
                     singleTaskContainer.setAttribute("class", "taskCard");
@@ -163,43 +150,59 @@ const homePageDOM = (function () {
 
                 loadedProjectDialog.showModal();
 
+                // cerrar event listener tras cerrar el dialog del project loaded
+                loadedProjectDialog.addEventListener("click", (e) => {
+
+                    if (e.target.id === "addTaskButton") {
+
+                        // abrir otro modal
+
+                    }
+
+                });
+
             }
 
 
         });
 
-        // crearlo solo cuando se clicke en createProject?
-        homepageCreateProjectDialog.addEventListener("click", (e) => {
+        createProjectButton.addEventListener("click", (e) => {
 
-            switch (e.target.id) {
+            homepageCreateProjectDialog.show();
 
-                case "exitCreateProjectButton":
+            homepageCreateProjectDialog.addEventListener("click", (e) => {
 
-                    homepageCreateProjectDialog.close();
+                switch (e.target.id) {
 
-                    break;
+                    case "exitCreateProjectButton":
 
-                case "createProjectSubmitButton":
+                        homepageCreateProjectDialog.close();
 
-                    const projectName = homepageCreateProjectDialog.querySelector("#projectName").value;
-                    const projectDescription = homepageCreateProjectDialog.querySelector("#projectDescription").value;
+                        break;
 
-                    homePageModule.createProject(projectName, projectDescription);
-                    // soft reset de la page, cargar todo de nuevo, como recargar la página... (puede que recargar la página sea útil en el futuro cuando tenga la DB)
-                    // FUNCIÓN TEMPORAL DE RELOAD:
-                    loadHomepageProjectList();
-                    loadProjectSearchDatalist();
-                    loadGlobalProject();
-                    homepageCreateProjectDialog.close();
-            }
+                    case "createProjectSubmitButton":
+
+                        const projectName = homepageCreateProjectDialog.querySelector("#projectName").value;
+                        const projectDescription = homepageCreateProjectDialog.querySelector("#projectDescription").value;
+
+                        homepageLogic.createProject(projectName, projectDescription);
+
+                        // FUNCIÓN TEMPORAL DE RELOAD:
+                        homepageReload();
+
+                        homepageCreateProjectDialog.close();
+                }
+
+            }, { once: true });
 
         });
 
     }
 
+    /* ******************************************************************************** */
     function loadProjectSearchResults(foundProjects) {
 
-        removeElementChildren(homepageProjectListContainer);
+        domUtil.removeElementChildren(homepageProjectListContainer);
 
         foundProjects.forEach((project) => {
 
@@ -239,11 +242,5 @@ const homePageDOM = (function () {
     return { loadHomepageProjectList, loadProjectSearchDatalist, loadHomepageEventListeners, loadGlobalProject };
 
 })();
-
-function removeElementChildren(element) {
-
-    Array.from(element.children).forEach(child => child.remove());
-
-}
 
 export { homePageDOM };
