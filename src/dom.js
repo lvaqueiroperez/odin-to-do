@@ -4,7 +4,7 @@
 // al final revisar event listeners, a ver cual necesita el "once" u otro arreglo para optimizarlo
 // crear un event listener cada vez que se clicka algo y no cerrarlo después crea muchos problemas!
 // cuando acabe, pedir que revisen el codigo para recomendarme cosas?
-
+// pendiente de refactorizar más y crear más módulos, mucho código en un solo fichero es MALO
 import { projectsArray, globalTasksArray } from "./data";
 import { homepageLogic } from "./logic";
 import { domUtil } from "./domUtil";
