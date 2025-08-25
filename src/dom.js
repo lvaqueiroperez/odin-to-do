@@ -170,34 +170,35 @@ const homePageDOM = (function () {
 
         });
 
+        // crear un event listener cada vez que se clicka algo y no cerrarlo después crea muchos problemas!
         createProjectButton.addEventListener("click", (e) => {
 
             homepageCreateProjectDialog.show();
 
-            homepageCreateProjectDialog.addEventListener("click", (e) => {
+        });
 
-                switch (e.target.id) {
+        homepageCreateProjectDialog.addEventListener("click", (e) => {
 
-                    case "exitCreateProjectButton":
+            switch (e.target.id) {
 
-                        homepageCreateProjectDialog.close();
+                case "exitCreateProjectButton":
 
-                        break;
+                    homepageCreateProjectDialog.close();
 
-                    case "createProjectSubmitButton":
+                    break;
 
-                        const projectName = homepageCreateProjectDialog.querySelector("#projectName").value;
-                        const projectDescription = homepageCreateProjectDialog.querySelector("#projectDescription").value;
+                case "createProjectSubmitButton":
 
-                        homepageLogic.createProject(projectName, projectDescription);
+                    const projectName = homepageCreateProjectDialog.querySelector("#projectName").value;
+                    const projectDescription = homepageCreateProjectDialog.querySelector("#projectDescription").value;
 
-                        // FUNCIÓN TEMPORAL DE RELOAD:
-                        homepageReload();
+                    homepageLogic.createProject(projectName, projectDescription);
 
-                        homepageCreateProjectDialog.close();
-                }
+                    // FUNCIÓN TEMPORAL DE RELOAD:
+                    homepageReload();
 
-            });
+                    homepageCreateProjectDialog.close();
+            }
 
         });
 
