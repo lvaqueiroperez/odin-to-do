@@ -5,6 +5,7 @@
 // crear un event listener cada vez que se clicka algo y no cerrarlo después crea muchos problemas!
 // cuando acabe, pedir que revisen el codigo para recomendarme cosas?
 // pendiente de refactorizar más y crear más módulos, mucho código en un solo fichero es MALO
+// hacer la priority de tasks basado en la due date, borrar el campo de priority
 import { projectsArray, globalTasksArray } from "./data";
 import { homepageLogic } from "./logic";
 import { domUtil } from "./domUtil";
