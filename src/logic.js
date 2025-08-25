@@ -153,6 +153,14 @@ const homepageLogic = (function () {
 
     }
 
+    const addTaskToProject = (project, taskTitle, taskDescription, taskDueDate, taskPriority) => {
+
+        const newTask = new Task(taskTitle, taskDescription, taskDueDate, taskPriority);
+
+        project.addTask(newTask);
+
+    }
+
     const getGlobalProjectTasks = () => {
 
         let allTasksArray = [];
@@ -269,7 +277,7 @@ const homepageLogic = (function () {
     }
 
 
-    return { searchProjects, createProject, getProjectById, getGlobalProjectTasks, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
+    return { searchProjects, createProject, getProjectById, addTaskToProject, getGlobalProjectTasks, createGlobalTask, associateGlobalTaskWithProject, deleteGlobalTask, editGlobalTask };
 
 })();
 
