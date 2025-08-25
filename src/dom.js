@@ -211,9 +211,9 @@ const homePageDOM = (function () {
 
             homepageProjectListContainer.appendChild(projectButton);
 
-            addEraseSearchResultsButton(homepageProjectListContainer);
-
         });
+
+        addEraseSearchResultsButton(homepageProjectListContainer);
 
     }
 
