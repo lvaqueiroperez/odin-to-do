@@ -151,7 +151,13 @@ const homePageDOM = (function () {
 
                 });
 
-                loadedProjectDialog.append(projectName, projectDescription, tasksContainer);
+                const closeProjectButton = document.createElement("button");
+                closeProjectButton.textContent = "X";
+
+                const addTaskButton = document.createElement("button");
+                addTaskButton.textContent = "+";
+
+                loadedProjectDialog.append(closeProjectButton, projectName, projectDescription, tasksContainer, addTaskButton);
 
                 loadedProjectDialog.showModal();
 
