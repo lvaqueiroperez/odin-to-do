@@ -82,7 +82,7 @@ const homePageDOM = (function () {
 
             const taskProject = document.createElement("p");
 
-            const taskProjectName = task.getProjectId() === "global" ? "global" : homepageLogic.getProjectById(task.getProjectId).name;
+            const taskProjectName = task.getProjectId() === "global" ? "global" : homepageLogic.getProjectById(task.getProjectId()).name;
 
             taskProject.textContent = "Project: " + taskProjectName;
 
