@@ -99,7 +99,7 @@ const homePageDOM = (function () {
     const loadHomepageEventListeners = function () {
 
 
-        searchButton.addEventListener("click", (e) => {
+        searchButton.addEventListener("click", function search(e) {
 
             const projectName = document.querySelector("input[type='search']").value;
 
@@ -109,6 +109,7 @@ const homePageDOM = (function () {
 
                 loadProjectSearchResults(foundProjects);
 
+
             } else {
                 // todo: mensaje "no se ha encontrado ningún proyecto con ese nombre"
                 alert("We couldn't find any project with that name.");
@@ -117,47 +118,13 @@ const homePageDOM = (function () {
 
         });
 
-        homepageProjectListContainer.addEventListener("click", (e) => {
+        homepageProjectListContainer.addEventListener("click", function loadProject(e) {
 
-            // load project
             if (e.target.className === "projectButton") {
 
-                // remove dialog children first except buttons
-                domUtil.removeElementChildren(loadedProjectData);
+                const project = homepageLogic.getProjectById(e.target.dataset.projectId);
 
-                const projectToLoad = homepageLogic.getProjectById(e.target.dataset.projectId);
-
-                const projectName = document.createElement("h2");
-                projectName.textContent = projectToLoad.name;
-
-                const projectDescription = document.createElement("p");
-                projectDescription.textContent = projectToLoad.description;
-
-                const tasksContainer = document.createElement("div");
-                projectToLoad.getTasks().forEach((task) => {
-
-                    const singleTaskContainer = document.createElement("div");
-                    singleTaskContainer.setAttribute("class", "taskCard");
-
-                    const taskCheckbox = document.createElement("input");
-                    taskCheckbox.setAttribute("type", "checkbox");
-                    taskCheckbox.setAttribute("id", task.taskId);
-
-                    const taskTitle = document.createElement("p");
-                    taskTitle.textContent = task.title;
-                    taskTitle.setAttribute("class", "taskTitle");
-
-                    const taskDueDate = document.createElement("p");
-                    taskDueDate.textContent = task.dueDate;
-                    taskDueDate.setAttribute("class", "taskDueDate");
-
-                    singleTaskContainer.append(taskCheckbox, taskTitle, taskDueDate);
-
-                    tasksContainer.appendChild(singleTaskContainer);
-
-                });
-
-                loadedProjectData.append(projectName, projectDescription, tasksContainer);
+                loadProjectData(project.id);
 
                 loadedProjectDialog.showModal();
 
@@ -166,17 +133,45 @@ const homePageDOM = (function () {
                 }, { once: true });
 
 
-                // using previous event object, not this one
-                addProjectTaskButton.addEventListener("click", () => {
+                addProjectTaskButton.addEventListener("click", function addTask(e) {
 
                     addProjectTaskDialog.showModal();
 
-                    initAddProjectTaskDialogEventListener(homepageLogic.getProjectById(e.target.dataset.projectId));
+                    addProjectTaskDialog.addEventListener("click", function exitOrCreate(e) {
+                        switch (e.target.id) {
 
-                }, { once: true });
+                            case "exitCreateProjectTaskButton":
+
+                                addProjectTaskDialog.removeEventListener("click", exitOrCreate);
+
+                                addProjectTaskDialog.close();
+
+                                break;
+
+                            case "createTaskSubmitButton":
+
+                                const taskTitle = addProjectTaskDialog.querySelector("#taskTitle").value;
+                                const taskDescription = addProjectTaskDialog.querySelector("#taskDescription").value;
+                                const taskDueDate = addProjectTaskDialog.querySelector("#taskDueDate").value;
+                                const taskPriority = addProjectTaskDialog.querySelector("#taskPriority").value;
+
+                                homepageLogic.addTaskToProject(project, taskTitle, taskDescription, taskDueDate, taskPriority);
+
+                                loadProjectData(project.id);
+
+                                homepageReload();
+
+                                addProjectTaskDialog.close();
+
+                                addProjectTaskDialog.removeEventListener("click", exitOrCreate);
+
+                                break;
+                        }
+                    });
+
+                });
 
             }
-
 
         });
 
@@ -185,32 +180,37 @@ const homePageDOM = (function () {
 
             homepageCreateProjectDialog.show();
 
+            homepageCreateProjectDialog.addEventListener("click", function exitOrCreate(e) {
+
+                switch (e.target.id) {
+
+                    case "exitCreateProjectButton":
+
+                        homepageCreateProjectDialog.removeEventListener("click", exitOrCreate);
+
+                        homepageCreateProjectDialog.close();
+
+                        break;
+
+                    case "createProjectSubmitButton":
+
+                        const projectName = homepageCreateProjectDialog.querySelector("#projectName").value;
+                        const projectDescription = homepageCreateProjectDialog.querySelector("#projectDescription").value;
+
+                        homepageCreateProjectDialog.removeEventListener("click", exitOrCreate);
+
+                        homepageLogic.createProject(projectName, projectDescription);
+
+                        homepageReload();
+
+                        homepageCreateProjectDialog.close();
+                }
+
+            });
+
         });
 
-        homepageCreateProjectDialog.addEventListener("click", (e) => {
 
-            switch (e.target.id) {
-
-                case "exitCreateProjectButton":
-
-                    homepageCreateProjectDialog.close();
-
-                    break;
-
-                case "createProjectSubmitButton":
-
-                    const projectName = homepageCreateProjectDialog.querySelector("#projectName").value;
-                    const projectDescription = homepageCreateProjectDialog.querySelector("#projectDescription").value;
-
-                    homepageLogic.createProject(projectName, projectDescription);
-
-                    // FUNCIÓN TEMPORAL DE RELOAD:
-                    homepageReload();
-
-                    homepageCreateProjectDialog.close();
-            }
-
-        });
 
     }
 
@@ -261,38 +261,45 @@ const homePageDOM = (function () {
         return projectButton;
     }
 
-    function initAddProjectTaskDialogEventListener(project) {
+    function loadProjectData(projectId) {
+        // remove dialog children first except buttons
+        domUtil.removeElementChildren(loadedProjectData);
 
-        addProjectTaskDialog.addEventListener("click", (e) => {
+        const projectToLoad = homepageLogic.getProjectById(projectId);
 
-            switch (e.target.id) {
+        const projectName = document.createElement("h2");
+        projectName.textContent = projectToLoad.name;
 
-                case "exitCreateProjectTaskButton":
+        const projectDescription = document.createElement("p");
+        projectDescription.textContent = projectToLoad.description;
 
-                    addProjectTaskDialog.close();
+        const tasksContainer = document.createElement("div");
+        tasksContainer.setAttribute("class", "tasksContainer");
 
-                    break;
+        projectToLoad.getTasks().forEach((task) => {
 
-                case "createTaskSubmitButton":
+            const taskCard = document.createElement("div");
+            taskCard.setAttribute("class", "taskCard");
 
-                    const taskTitle = addProjectTaskDialog.querySelector("#taskTitle").value;
-                    const taskDescription = addProjectTaskDialog.querySelector("#taskDescription").value;
-                    const taskDueDate = addProjectTaskDialog.querySelector("#taskDueDate").value;
-                    const taskPriority = addProjectTaskDialog.querySelector("#taskPriority").value;
+            const taskCheckbox = document.createElement("input");
+            taskCheckbox.setAttribute("type", "checkbox");
+            taskCheckbox.setAttribute("id", task.taskId);
 
-                    // necesito el proyecto!
-                    console.log(project);
+            const taskTitle = document.createElement("p");
+            taskTitle.textContent = task.title;
+            taskTitle.setAttribute("class", "taskTitle");
 
+            const taskDueDate = document.createElement("p");
+            taskDueDate.textContent = task.dueDate;
+            taskDueDate.setAttribute("class", "taskDueDate");
 
+            taskCard.append(taskCheckbox, taskTitle, taskDueDate);
 
-                    // FUNCIÓN TEMPORAL DE RELOAD:
-                    homepageReload();
+            tasksContainer.appendChild(taskCard);
 
-                    addProjectTaskDialog.close();
-            }
+        });
 
-        }, { once: true });
-
+        loadedProjectData.append(projectName, projectDescription, tasksContainer);
     }
 
     return { loadHomepageProjectList, loadProjectSearchDatalist, loadHomepageEventListeners, loadGlobalProject };
