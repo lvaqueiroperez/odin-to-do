@@ -18,6 +18,7 @@ const homePageDOM = (function () {
     const projectDatalist = document.querySelector("#projectList");
     const searchButton = document.querySelector(".searchProject>button");
     const createProjectButton = document.querySelector("#createProjectButton");
+    const addProjectTaskDialog = document.querySelector(".addProjectTaskDialog");
 
 
     const loadHomepageProjectList = function () {
@@ -168,9 +169,10 @@ const homePageDOM = (function () {
                 // event listener que solo existe cuando abrimos un project
                 loadedProjectDialog.addEventListener("click", (e) => {
 
-                    if (e.target.id === "addTaskButton") {
+                    if (e.target.id === "addProjectTaskButton") {
 
                         // abrir otro modal
+                        addProjectTaskDialog.showModal();
 
                     }
 
@@ -180,6 +182,10 @@ const homePageDOM = (function () {
 
 
         });
+
+        // add project task modal listener
+        
+
 
         createProjectButton.addEventListener("click", (e) => {
 
