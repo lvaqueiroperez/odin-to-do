@@ -1,9 +1,10 @@
 // CÓDIGO DE ITERACCIÓN CON EL USER Y CON EL DOM
-// hacer la función de load event listeners cuando el dom esté cargado?
 // TODO: Refactorizar variables creadas en bucles, no crear una variable en cada vuelta!!!
 // organizar y refactorizar, pensar qué es lo que merece estar dentro de una variable y qué no
 // al final revisar event listeners, a ver cual necesita el "once" u otro arreglo para optimizarlo
+// crear un event listener cada vez que se clicka algo y no cerrarlo después crea muchos problemas!
 // cuando acabe, pedir que revisen el codigo para recomendarme cosas?
+
 import { projectsArray, globalTasksArray } from "./data";
 import { homepageLogic } from "./logic";
 import { domUtil } from "./domUtil";
@@ -170,7 +171,6 @@ const homePageDOM = (function () {
 
         });
 
-        // crear un event listener cada vez que se clicka algo y no cerrarlo después crea muchos problemas!
         createProjectButton.addEventListener("click", (e) => {
 
             homepageCreateProjectDialog.show();
