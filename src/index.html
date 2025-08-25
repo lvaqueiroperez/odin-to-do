@@ -95,9 +95,55 @@
 
     </dialog>
 
-    <dialog class="addTaskDialog">
+
+    <dialog class="addProjectTaskDialog">
+
+        <button type="button" id="exitCreateProjectTaskButton">X</button>
+
+        <form action="#" method="get">
+
+            <h2>Create New Task</h2>
+
+            <section class="taskData">
+
+                <div>
+                    <label for="taskTitle">
+                        <span>Task Title:</span>
+                    </label>
+                    <input type="text" id="taskTitle" name="taskTitle" maxlength="30" required>
+                </div>
+
+                <div>
+                    <label for="taskDescription">
+                        <span>Task Description:</span>
+                    </label>
+                    <input type="text" id="taskDescription" name="taskDescription" maxlength="30">
+                </div>
+
+                <div>
+                    <label for="taskDueDate">
+                        <span>Task Due Date:</span>
+                    </label>
+                    <input type="text" id="taskDueDate" name="taskDueDate" maxlength="30">
+                </div>
+
+                <div>
+                    <label for="taskPriority">
+                        <span>Does it have priority?</span>
+                    </label>
+                    <input type="text" id="taskPriority" name="taskPriority" maxlength="30">
+                </div>
+
+                <div>
+                    <button type="button" id="createTaskSubmitButton">Submit</button>
+                </div>
+
+            </section>
+
+        </form>
 
     </dialog>
+
 
     <!--TODO: en vez de ir directamente, mostrar una animación de scrolleo, más fancy-->
     <div class="globalProjectButtonContainer">
