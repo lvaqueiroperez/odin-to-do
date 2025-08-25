@@ -197,7 +197,7 @@ const homePageDOM = (function () {
                         homepageCreateProjectDialog.close();
                 }
 
-            }, { once: true });
+            });
 
         });
 
