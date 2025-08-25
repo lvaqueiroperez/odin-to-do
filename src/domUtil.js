@@ -1,3 +1,5 @@
+// GENERAL USE
+
 const domUtil = (function () {
 
     const removeElementChildren = (element) => {
