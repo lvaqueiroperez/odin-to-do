@@ -161,6 +161,10 @@ const homePageDOM = (function () {
 
                 loadedProjectDialog.showModal();
 
+                closeProjectButton.addEventListener("click", (e) => {
+                    loadedProjectDialog.close();
+                }, { once: true });
+
                 // event listener que solo existe cuando abrimos un project
                 loadedProjectDialog.addEventListener("click", (e) => {
 
