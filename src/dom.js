@@ -149,9 +149,10 @@ const homePageDOM = (function () {
 
                 loadedProjectDialog.append(projectName, projectDescription, tasksContainer);
 
+                // borrar hijos del modal
                 loadedProjectDialog.showModal();
 
-                // cerrar event listener tras cerrar el dialog del project loaded
+                // event listener que solo existe cuando abrimos un project
                 loadedProjectDialog.addEventListener("click", (e) => {
 
                     if (e.target.id === "addTaskButton") {
@@ -160,7 +161,7 @@ const homePageDOM = (function () {
 
                     }
 
-                });
+                }, { once: true });
 
             }
 
