@@ -115,6 +115,9 @@ const homePageDOM = (function () {
             // load project
             if (e.target.className === "projectButton") {
 
+                // remove dialog children first
+                domUtil.removeElementChildren(loadedProjectDialog);
+
                 const projectToLoad = homepageLogic.getProjectById(e.target.dataset.projectId);
 
                 const projectName = document.createElement("h2");
@@ -149,7 +152,6 @@ const homePageDOM = (function () {
 
                 loadedProjectDialog.append(projectName, projectDescription, tasksContainer);
 
-                // borrar hijos del modal
                 loadedProjectDialog.showModal();
 
                 // event listener que solo existe cuando abrimos un project
