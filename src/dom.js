@@ -15,10 +15,13 @@ const homePageDOM = (function () {
     const homepageProjectListContainer = document.querySelector(".homepageProjectListContainer");
     const homepageCreateProjectDialog = document.querySelector(".createProjectDialog");
     const loadedProjectDialog = document.querySelector(".loadedProjectDialog");
+    const loadedProjectData = document.querySelector(".loadedProjectData");
     const globalProjectContainer = document.querySelector(".globalProjectContainer");
     const projectDatalist = document.querySelector("#projectList");
     const searchButton = document.querySelector(".searchProject>button");
     const createProjectButton = document.querySelector("#createProjectButton");
+    const closeProjectButton = document.querySelector("#closeProjectButton");
+    const addProjectTaskButton = document.querySelector("#addProjectTaskButton");
     const addProjectTaskDialog = document.querySelector(".addProjectTaskDialog");
 
 
@@ -118,8 +121,8 @@ const homePageDOM = (function () {
             // load project
             if (e.target.className === "projectButton") {
 
-                // remove dialog children first
-                domUtil.removeElementChildren(loadedProjectDialog);
+                // remove dialog children first except buttons
+                domUtil.removeElementChildren(loadedProjectData);
 
                 const projectToLoad = homepageLogic.getProjectById(e.target.dataset.projectId);
 
@@ -153,13 +156,7 @@ const homePageDOM = (function () {
 
                 });
 
-                const closeProjectButton = document.createElement("button");
-                closeProjectButton.textContent = "X";
-
-                const addTaskButton = document.createElement("button");
-                addTaskButton.textContent = "+";
-
-                loadedProjectDialog.append(closeProjectButton, projectName, projectDescription, tasksContainer, addTaskButton);
+                loadedProjectData.append(projectName, projectDescription, tasksContainer);
 
                 loadedProjectDialog.showModal();
 
@@ -167,16 +164,9 @@ const homePageDOM = (function () {
                     loadedProjectDialog.close();
                 }, { once: true });
 
-                // event listener que solo existe cuando abrimos un project
-                loadedProjectDialog.addEventListener("click", (e) => {
 
-                    if (e.target.id === "addProjectTaskButton") {
-
-                        // abrir otro modal
-                        addProjectTaskDialog.showModal();
-
-                    }
-
+                addProjectTaskButton.addEventListener("click", (e) => {
+                    addProjectTaskDialog.showModal();
                 }, { once: true });
 
             }
