@@ -165,17 +165,19 @@ const homePageDOM = (function () {
                 }, { once: true });
 
 
-                addProjectTaskButton.addEventListener("click", (e) => {
+                // using previous event object, not this one
+                addProjectTaskButton.addEventListener("click", () => {
+
                     addProjectTaskDialog.showModal();
+
+                    initAddProjectTaskDialogEventListener(homepageLogic.getProjectById(e.target.dataset.projectId));
+
                 }, { once: true });
 
             }
 
 
         });
-
-        // add project task modal listener
-        
 
 
         createProjectButton.addEventListener("click", (e) => {
@@ -256,6 +258,40 @@ const homePageDOM = (function () {
         projectButton.setAttribute("class", "projectButton");
 
         return projectButton;
+    }
+
+    function initAddProjectTaskDialogEventListener(project) {
+
+        addProjectTaskDialog.addEventListener("click", (e) => {
+
+            switch (e.target.id) {
+
+                case "exitCreateProjectTaskButton":
+
+                    addProjectTaskDialog.close();
+
+                    break;
+
+                case "createTaskSubmitButton":
+
+                    const taskTitle = addProjectTaskDialog.querySelector("#taskTitle").value;
+                    const taskDescription = addProjectTaskDialog.querySelector("#taskDescription").value;
+                    const taskDueDate = addProjectTaskDialog.querySelector("#taskDueDate").value;
+                    const taskPriority = addProjectTaskDialog.querySelector("#taskPriority").value;
+
+                    // necesito el proyecto!
+                    console.log(project);
+
+
+
+                    // FUNCIÓN TEMPORAL DE RELOAD:
+                    homepageReload();
+
+                    addProjectTaskDialog.close();
+            }
+
+        }, { once: true });
+
     }
 
     return { loadHomepageProjectList, loadProjectSearchDatalist, loadHomepageEventListeners, loadGlobalProject };
