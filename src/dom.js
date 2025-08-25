@@ -130,10 +130,16 @@ const homePageDOM = (function () {
 
                 closeProjectButton.addEventListener("click", (e) => {
                     loadedProjectDialog.close();
+
+                    addProjectTaskButton.removeEventListener("click", addTask);
+
                 }, { once: true });
 
 
-                addProjectTaskButton.addEventListener("click", function addTask(e) {
+                addProjectTaskButton.addEventListener("click", addTask);
+
+                // alguna manera de pasarle a esta función un parámetro que no sea el event?
+                function addTask(e) {
 
                     addProjectTaskDialog.showModal();
 
@@ -169,7 +175,7 @@ const homePageDOM = (function () {
                         }
                     });
 
-                });
+                }
 
             }
 
